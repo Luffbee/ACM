@@ -12,15 +12,30 @@ public:
 	// MAXL:	the max length of the string
 	// ELE:		the type of elements
 	typedef char ELE;
+	static const int LETTER = 26; // the size of alphabet
+	static const char AA = 'a';	// the first letter of the alphabet
 	static const int _maxl = MAXN;
 	struct State {
-		map<ELE, int> transs;	// the transation
-		inline int & trans(ELE e) { return transs[e]; } // get of set the transation
+		//map<ELE, int> transs;	// the transition
+		int transs[LETTER];
+		inline int & trans(ELE e) {
+			//return transs[e];
+			return transs[e-AA];
+		} // get of set the transation
 		// check wether there is  a transation
-		inline bool hastrans(ELE e) { return transs.count(e); }
-		inline void cleartrans() { transs.clear(); }
+		inline bool hastrans(ELE e) {
+			//return transs.count(e);
+			return transs[e-AA] != -1;
+		}
+		inline void cleartrans() {
+			//transs.clear();
+			memset(transs, -1, sizeof(transs));
+		}
 		// set transation according to another state
-		inline void cptrans(State const & rh) { transs = rh.transs; }
+		inline void cptrans(State const & rh) {
+			//transs = rh.transs;
+			memcpy(transs, rh.transs, sizeof(transs));
+		}
 		// maxlen:	the length of the longest string this state present
 		// num:		the number of path that can reach a accpet state from this state
 		// accept:	wether this state is a accept state
@@ -76,7 +91,9 @@ public:
 		if (state[cur].num != 0) return state[cur].num;
 		int ret = 0;
 		if (state[cur].accept) ret++;
-		for (auto i : state[cur].transs) ret += set_num(i.second);
+		for (auto i : state[cur].transs) {
+			if (i != -1) ret += set_num(i);
+		}
 		state[cur].num = ret;
 		return ret;
 	}
