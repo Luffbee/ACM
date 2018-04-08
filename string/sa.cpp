@@ -164,7 +164,7 @@ int main() {
   cin >> txt;
   int l = strlen(txt);
   SA::getSA(txt, l, txtsa, 128);
-  for (int i = 0; i < l-1; ++i) {
+  for (int i = 0; i < l; ++i) {
     cout << txtsa[i] + 1 << ' ';
   } cout << '\n';
 }
