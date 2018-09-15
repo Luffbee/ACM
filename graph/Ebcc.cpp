@@ -1,13 +1,17 @@
-struct Edge{ int u,v; }e[maxm];
-int n,m,stamp,dfn[maxn],low[maxn];
-int bccno[maxn],bcc_cnt;
-vector<int> vec[maxn],bcc[maxn];
-bool g[maxn][maxn],isbridge[maxm];
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 2e5+10;
+const int M = 4e5+10;
+struct Edge{ int u,v; }e[M];
+int n,m,stamp,dfn[N],low[N];
+int bccno[N],bcc_cnt;
+vector<int> vec[N],bcc[N];
+bool g[N][N],isbridge[M];
 
 void tarjan(int index,int fa) {
   int tmp;
   dfn[index]=low[index]=++stamp;
-  for(int i=0;i<vec[index].size();i++) {
+  for(int i=0;i<(int)vec[index].size();i++) {
     tmp=e[vec[index][i]].v;
     if(!dfn[tmp]) {
       tarjan(tmp,index);
@@ -23,7 +27,7 @@ void tarjan(int index,int fa) {
 void dfs(int index) {
   dfn[index]=1;
   bccno[index]=bcc_cnt;
-  for(int i=0;i<vec[index].size();i++) {
+  for(int i=0;i<(int)vec[index].size();i++) {
     int tmp=vec[index][i];
     if(isbridge[tmp]) continue;
     if(!dfn[e[tmp].v]) dfs(e[tmp].v);

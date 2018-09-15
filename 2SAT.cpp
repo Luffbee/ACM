@@ -1,10 +1,4 @@
-#include <iostream>
-#include <cstring>
-#include <algorithm>
-#include <cassert>
-#include <queue>
-#include <cstdio>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int const MAXN = 1e4;

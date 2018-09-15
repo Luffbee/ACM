@@ -24,6 +24,7 @@ void add(int u, int v, LL l) {
   head2[v] = etot;
 }
 
+// M + N * log(M)
 struct Node {
   pii v;
   int nql, ls, rs;

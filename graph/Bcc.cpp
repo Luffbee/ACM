@@ -1,23 +1,27 @@
-struct Edge{ int u,v; }e[maxm];
-int n,m,stamp,dfn[maxn],low[maxn];
-int iscut[maxn],bccno[maxn];
-int scnt,stack[maxm],bcc_cnt;
-vector<int> vec[maxn],bcc[maxn];
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 2e5;
+const int M = 4e5;
+struct Edge{ int u,v; }e[M];
+int n,m,stamp,dfn[N],low[N];
+int iscut[N],bccno[N];
+int scnt,stk[M],bcc_cnt;
+vector<int> vec[N],bcc[N];
 
 void tarjan(int index,int fa) {
   int child=0,tmp;
   dfn[index]=low[index]=++stamp;
-  for(int i=0;i<vec[index].size();i++) {
+  for(int i=0;i<(int)vec[index].size();i++) {
     tmp=e[vec[index][i]].v;
     if(!dfn[tmp]) {
-      stack[++scnt]=vec[index][i],child++;
+      stk[++scnt]=vec[index][i],child++;
       tarjan(tmp,index);
       low[index]=min(low[index],low[tmp]);
       if(low[tmp]>=dfn[index]) {
         iscut[index]=1;
         bcc[++bcc_cnt].clear();
         while(1) {
-          int num=stack[scnt--];
+          int num=stk[scnt--];
           if(bccno[e[num].u]!=bcc_cnt) {
             bcc[bcc_cnt].push_back(e[num].u);
             bccno[e[num].u]=bcc_cnt;
@@ -32,7 +36,7 @@ void tarjan(int index,int fa) {
       }
     }
     else if(dfn[tmp]<dfn[index] && tmp!=fa) {
-        stack[++scnt]=vec[index][i];
+        stk[++scnt]=vec[index][i];
         low[index]=min(low[index], dfn[tmp]);
     }
   }

@@ -1,6 +1,4 @@
-#define FOR(i, n) for (int (i) = 0; (i) < (n); ++(i))
-#define FOR1(i, n) for (int (i) = 1; (i) <= (n); ++(i))
-
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MAXN = 1e6;
@@ -30,8 +28,4 @@ int kmp(char * str, char * s) {
 		}
 	}
 	return ret;
-}
-
-int main() {
-	return 0;
 }

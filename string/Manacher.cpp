@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-#define FOR(i, n) for (int (i) = 0; (i) < (n); (i)++)
-#define FOR1(i, n) for (int (i) = 1; (i) <= (n); (i)++)
-
 using namespace std;
 
 typedef long long LL;
@@ -34,16 +31,4 @@ int manacher(char * s) {
 		ret = max(ret, t);
 	}
 	return ret; // return the max length
-}
-
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	int T;
-	cin >> T;
-	while (T--) {
-		cin >> txt;
-		cout << manacher(txt) << endl;;
-	}
-	return 0;
 }

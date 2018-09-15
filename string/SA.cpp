@@ -5,11 +5,7 @@
  *  including DA and SA-IS implemention.
  *
  *******************************************/
-#include <iostream>
-#include <algorithm>
-#include <cassert>
-#include <cstring>
-#include <cstdio>
+#include <bits/stdc++.h>
 
 using namespace std;
 
